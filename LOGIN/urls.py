@@ -21,6 +21,6 @@ urlpatterns = [
    path('', views.Home, name='home'),
    path('Signup/', views.Signup),
    
-   path('Signin/', views.Signin),
+   path('Signin/', views.Signin, name = 'signin'),
    path('Signout/', views.Signout)
 ]
