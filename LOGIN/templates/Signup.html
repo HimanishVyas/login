@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+
+    <style>
+        .a {
+            
+          }
+    </style>
 </head>
 <body>
 
     <h3>Create your account!</h3>
+<div class="a"> 
     <form method="POST" action="">
         {% csrf_token %}
         <div class="form-group">
@@ -38,5 +45,6 @@
         {% comment %} <button type="submit" class="btn btn-primary">Sign Up</button> {% endcomment %}
         <input type = "submit" value = "submit">
     </form>
+</div>
 </body>
 </html>

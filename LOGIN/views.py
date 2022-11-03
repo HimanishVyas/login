@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from .models import todo
 #from .models import User
 
 # Create your views here.
@@ -29,20 +31,16 @@ def Signup(request):
 
         messages.success(request, 'Your acount hse been created')
 
-        return redirect('signin')
+        # return redirect('signin')
+        return HttpResponse("hello")
        
     return render(request, 'Signup.html')
 
 def Signin(request):
-
-        if request.method == "POST":
-           
-           
-    
+    if request.method == "POST":
             uname = request.POST['uname']
             # print(email)
             password = request.POST['pass1']
-            
            
             user = authenticate(request ,username = uname, password = password)
             print("User ====",user)
@@ -55,13 +53,23 @@ def Signin(request):
                 print(fname)
                 return render(request, 'success.html', {'fname' : fname})
                 
-                
             else:
                 messages.error(request, "invalid")
-            
-
-        return render(request, 'Signin.html')
+    
+    return render(request, 'Signin.html')
 
 def Signout(request):
     return render(request, 'Signout.html')
 
+def home_user(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        desc = request.POST['desc']
+        print("=+++++"*10,title,desc)
+        print(request.user.id)
+        ins = todo(Tasktitle = title, Taskdesc = desc , user_id = request.user.id)
+        
+        ins.save()
+        return HttpResponse("Task Saved.. !!!")
+        
+    return render(request, 'success.html')
