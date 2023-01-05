@@ -31,8 +31,8 @@ def Signup(request):
 
         messages.success(request, 'Your acount hse been created')
 
-        # return redirect('signin')
-        return HttpResponse("hello")
+        return redirect('signin')
+        # return HttpResponse("hello")
        
     return render(request, 'Signup.html')
 
